@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase Authentication</title>
+</head>
+<body>
+  <h1>Firebase Authentication</h1>
+  <button id="sign-in-google">Sign in with Google</button>
+
+  <!-- Firebase SDK (ES6 module syntax) -->
+  <script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+    // Your Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyAeGm0GKT-kxbemO5SeLPQbrE8bQsIXJ10",
+  authDomain: "test-readme-3a81a.firebaseapp.com",
+  projectId: "test-readme-3a81a",
+  storageBucket: "test-readme-3a81a.appspot.com",
+  messagingSenderId: "408296664131",
+  appId: "1:408296664131:web:e0d1ad3a09ca772d4938f6",
+  measurementId: "G-ND3MPC7PQS"
+};
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Set up Google sign-in
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    // Sign in with Google button click event
+    document.getElementById('sign-in-google').addEventListener('click', () => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          // Handle successful sign-in
+          console.log('Signed in user:', result.user);
+        })
+        .catch((error) => {
+          // Handle errors
+          console.error('Sign-in error:', error);
+        });
+    });
+  </script>
+</body>
+</html>
